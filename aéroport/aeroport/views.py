@@ -9,7 +9,7 @@ def ajout(request):
         form = AvionForm(request)
         if form.is_valid():
             avion = form.save()
-            return render(request, "/aeroport/affiche.html", {"avion": avion})
+            return render(request, "aeroport/affiche.html", {"avion": avion})
         else:
             return render(request, "aeroport/ajout.html", {"form": form})
     else:
@@ -21,7 +21,7 @@ def traitement(request):
     aform = AvionForm(request.POST)
     if aform.is_valid():
         avion = aform.save()
-        return render(request, "/aeroport/affiche.html", {"avion": avion})
+        return render(request, "aeroport/affiche.html", {"avion": avion})
     else:
         return render(request, "aeroport/ajout.html", {"form": aform})
 
