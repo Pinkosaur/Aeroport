@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class MonaéroportConfig(AppConfig):
+class AeroportConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'monAéroport'
+    name = 'aeroport'

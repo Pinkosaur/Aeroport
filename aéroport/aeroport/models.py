@@ -1,6 +1,6 @@
 from django.db import models
 
-class Livre(models.Model):
+class Avions(models.Model):
     modele = models.CharField(max_length=100)
     pilote1 = models.CharField(max_length = 100)
     pilote2 = models.CharField(max_length = 100)
@@ -8,7 +8,7 @@ class Livre(models.Model):
     date_depart = models.DateField(blank=True, null = True)
     nombre_passagers_depart = models.IntegerField(blank=True, null = True)
     nombre_passagers_arrivee = models.IntegerField(blank=True, null = True)
-    id = models.IntegerField(blank=False, null=False)
+    id = models.IntegerField(primary_key=True)
 
     def __str__(self):
         chaine = f"{self.modele} n°{self.id} piloté par {self.pilote1} et {self.pilote2}, arrivant le " \
