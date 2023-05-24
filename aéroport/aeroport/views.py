@@ -22,3 +22,7 @@ def traitement(request):
         return render(request, "/aeroport/affiche.html", {"avion": avion})
     else:
         return render(request, "aeroport/ajout.html", {"form": aform})
+
+def affiche(request, id):
+    avion = models.Avions.objects.get(pk=id)
+    return render(request, 'aeroport/affiche.html', {'avion': avion})
