@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .forms import AvionForm
-from . import models
-
+from .import models
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 def ajout(request):
@@ -29,3 +29,25 @@ def traitement(request):
 def affiche(request, id):
     avion = models.Avion.objects.get(pk=id)
     return render(request, 'aeroport/affiche.html', {'avion': avion})
+
+
+def update(request, id):
+    aform = AvionForm(request.POST)
+    if aform.is_valid():
+        avion = aform.save(commit=False)
+        avion.id = id
+        avion.save()
+        return HttpResponseRedirect("/aeroport/affiche")
+    else:
+        return render(request, "aeroport/update.html", {"form": aform, "id": id})
+
+
+def delete(request):
+    suppr = models.Avion.objects.delete(pk=id)
+    return render(request, "aeroport/index.html")
+
+
+def index(request):
+    liste = models.Avion.objects.all()
+    return render(request,"aeroport/index.html",{"liste":liste})
+
