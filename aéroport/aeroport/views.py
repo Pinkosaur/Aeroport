@@ -2,18 +2,20 @@ from django.shortcuts import render
 from .forms import AvionForm
 from . import models
 
+
 # Create your views here.
 def ajout(request):
     if request.method == "POST":
         form = AvionForm(request)
         if form.is_valid():
             avion = form.save()
-            return render(request,"/aeroport/affiche.html",{"avion" : avion})
+            return render(request, "/aeroport/affiche.html", {"avion": avion})
         else:
-            return render(request,"aeroport/ajout.html",{"form": form})
-    else :
+            return render(request, "aeroport/ajout.html", {"form": form})
+    else:
         form = AvionForm()
-        return render(request,"aeroport/ajout.html",{"form" : form})
+        return render(request, "aeroport/ajout.html", {"form": form})
+
 
 def traitement(request):
     aform = AvionForm(request.POST)
@@ -23,6 +25,7 @@ def traitement(request):
     else:
         return render(request, "aeroport/ajout.html", {"form": aform})
 
+
 def affiche(request, id):
-    avion = models.Avions.objects.get(pk=id)
+    avion = models.Avion.objects.get(pk=id)
     return render(request, 'aeroport/affiche.html', {'avion': avion})
