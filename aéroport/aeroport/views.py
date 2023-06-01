@@ -34,26 +34,20 @@ def affiche(request, id):
 
 def update(request, id):
     avion = models.Avion.objects.get(pk=id)
-    form = AvionForm(avion.dic())
-    return render(request, "aeroport/ajout.html/", {"form":form, "id":id})
-"""    aform = AvionForm(request.POST)
-    if aform.is_valid():
-        avion = aform.save(commit=False)
-        avion.id = id;
-        avion.save()
-        return HttpResponseRedirect("/aeroport/index/")
-    else:
-        return render(request, "aeroport/update.html", {"form": aform, "id": id})"""
+    aform = AvionForm(avion.dic())
+    return render(request, "aeroport/ajoutupdate.html/", {"form":aform, "id":id})
+
 
 def updatetraitement(request, id):
     aform = AvionForm(request.POST)
+    saveid = id
     if aform.is_valid():
         avion = aform.save(commit = False)
-        avion.id = id
+        avion.id = saveid
         avion.save()
-        return render(request, "aeroport/affiche.html", {"avion": avion, "id":id})
+        return HttpResponseRedirect("/aeroport/index/")
     else:
-        return render(request, "aeroport/ajout.html", {"form": aform})
+        return render(request, "aeroport/ajoutupdate.html", {"form": aform})
 
 
 def delete(request, id):

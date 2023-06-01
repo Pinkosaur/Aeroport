@@ -5,7 +5,7 @@
 <title>Ajout</title>
 </head>
 <body>
-<form method="post" action="/aeroport/traitement">
+<form method="post" action="/aeroport/updatetraitement/{{id}}/">
 {% csrf_token %}
 {{ form.as_ul }}
 <input type="submit" value="envoyer les données"/>
