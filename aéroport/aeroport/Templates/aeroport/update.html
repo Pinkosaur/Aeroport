@@ -5,7 +5,7 @@
     <title>update</title>
 </head>
 <body>
-<form method="post" action="/aeroport/update/{{id}}/">
+<form method="post" action="/aeroport/update/{{avion.id}}/">
 {% csrf_token %}
 {{ form.as_ul }}
 <input type="submit" value="envoyer les données">

@@ -5,10 +5,14 @@
 <title>Ajout</title>
 </head>
 <body>
+{% if id == '' %}
+<form method="post" action="/aeroport/updatetraitement/{{id}}">
+{% else %}
 <form method="post" action="/aeroport/traitement">
+    {% endif %}
 {% csrf_token %}
 {{ form.as_ul }}
-<input type="submit" value="envoyer les données"\>
+<input type="submit" value="envoyer les données"/>
 </form>
 <a href="/aeroport/index/">Retourner à la page d'accueil</a>
 </body>

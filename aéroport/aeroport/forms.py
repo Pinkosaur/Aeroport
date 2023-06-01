@@ -10,7 +10,7 @@ class AvionForm(ModelForm):
                   'nombre_passagers_depart')
         labels = {
             'comp': _('Compagnie aérienne'),
-            'id': _('Identifiant de l\'appareil'),
+#            'id': _('Identifiant de l\'appareil'),
             'pilote1': _('Nom du premier pilote'),
             'pilote2': _('Nom du second pilote'),
             'date_arrivee': _('Date d\'entrée à l\'aéroport'),
