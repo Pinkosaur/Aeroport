@@ -10,32 +10,32 @@ def ajout(request):
         form = AvionForm(request)
         if form.is_valid():
             avion = form.save()
-            return render(request, "aeroport/affiche.html", {"avion": avion})
+            return render(request, "aeroport/avions/affiche.html", {"avion": avion})
         else:
-            return render(request, "aeroport/ajout.html", {"form": form})
+            return render(request, "aeroport/avions/ajout.html", {"form": form})
     else:
         form = AvionForm()
-        return render(request, "aeroport/ajout.html", {"form": form})
+        return render(request, "aeroport/avions/ajout.html", {"form": form})
 
 
 def traitement(request):
     aform = AvionForm(request.POST)
     if aform.is_valid():
         avion = aform.save()
-        return render(request, "aeroport/affiche.html", {"avion": avion})
+        return render(request, "aeroport/avions/affiche.html", {"avion": avion})
     else:
-        return render(request, "aeroport/ajout.html", {"form": aform})
+        return render(request, "aeroport/avions/ajout.html", {"form": aform})
 
 
 def affiche(request, id):
     avion = models.Avion.objects.get(pk=id)
-    return render(request, 'aeroport/affiche.html', {'avion': avion})
+    return render(request, 'aeroport/avions/affiche.html', {'avion': avion})
 
 
 def update(request, id):
     avion = models.Avion.objects.get(pk=id)
     aform = AvionForm(avion.dic())
-    return render(request, "aeroport/ajoutupdate.html/", {"form":aform, "id":id})
+    return render(request, "aeroport/avions/ajoutupdate.html/", {"form":aform, "id":id})
 
 
 def updatetraitement(request, id):
@@ -47,7 +47,7 @@ def updatetraitement(request, id):
         avion.save()
         return HttpResponseRedirect("/aeroport/index/")
     else:
-        return render(request, "aeroport/ajoutupdate.html", {"form": aform})
+        return render(request, "aeroport/avions/ajoutupdate.html", {"form": aform})
 
 
 def delete(request, id):
@@ -58,4 +58,7 @@ def delete(request, id):
 
 def index(request):
     liste = models.Avion.objects.all()
-    return render(request, "aeroport/index.html", {"liste": liste})
+    return render(request, "aeroport/avions/index.html", {"liste": liste})
+
+
+
