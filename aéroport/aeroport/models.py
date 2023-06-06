@@ -33,6 +33,7 @@ CHOIX_METIER = (
         ("Personnel navigant technique", "Personnel navigant technique"),
         ("Autre", "Autre")
          )
+
 class Personnel(models.Model):
     nom = models.CharField(max_length=30, blank=False)
     prenom = models.CharField(max_length=30, blank=False)
