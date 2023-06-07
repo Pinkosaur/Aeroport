@@ -1,11 +1,11 @@
+import django.utils.timezone
 from django.db import models
-from datetime import date
 
 class Avion(models.Model):
     modele = models.CharField(max_length=100)
     comp = models.CharField(max_length=100)
-    date_arrivee = models.DateField(default = date.today())
-    date_depart = models.DateField(blank=True, default=None)
+    date_arrivee = models.DateField(default = django.utils.timezone.now())
+    date_depart = models.DateField(blank=True, null=True)
     nombre_passagers_depart = models.IntegerField(default = 0)
     nombre_passagers_arrivee = models.IntegerField(default = 0)
 

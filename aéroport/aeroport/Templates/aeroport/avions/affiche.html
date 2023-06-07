@@ -8,16 +8,20 @@ Appareil ajouté
 {% endblock %}
 {% block content %}
 <p> vous avez ajouté l'avion suivant : appareil n°{{avion.id}} ({{avion.comp}}) </p>
+<p>Personnel dans cet appareil :</p>
+
+    {% if not list %}
+            <p>
+                Pas encore de personnel
+            </p>
+    {% else %}
 <ol>
-    Personnel dans cet appareil :
-    {% for l in liste %}
-        <li>
-            {{l.prenom}} {{l.nom}}, {{l.metier}}
-            <a href="/aeroport/afficheperso/{{l.id}}/"> Afficher</a> -
-            <a href="/aeroport/updateperso/{{l.id}}/"> Mettre à jour</a> -
-            <a href="/aeroport/deleteperso/{{l.id}}/"> Supprimer</a>
-        </li>
-    {% endfor %}
+        {% for l in liste %}
+            <li>
+                {{l.prenom}} {{l.nom}}, {{l.metier}}
+            </li>
+        {% endfor %}
+    {% endif %}
 </ol>
 <p><a href="/aeroport/ajoutperso/{{avion.id}}/">Ajouter du personnel</a> </p>
 <p><a href="/aeroport/ajout/">Ajouter un autre avion</a></p>
