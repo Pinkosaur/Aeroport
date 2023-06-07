@@ -1,0 +1,41 @@
+h3{
+    font-size: 2em;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2%;
+    margin-bottom: 10px;
+}
+
+body{
+    background-image: url("./background.jpg");
+    font-size: 1.5em;
+    padding: 5%;
+}
+
+div{
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2%;
+    padding-top: 1%;
+}
+
+a{
+    display: inline-block;
+    outline: 0;
+    text-align: center;
+    cursor: pointer;
+    padding: 0px 16px;
+    border-radius: 2px;
+    min-width: 80px;
+    height: fit-content;
+    background-color: rgb(255, 255, 255);
+    color: rgb(50, 49, 48);
+    font-size: 0.8em;
+    font-weight: 400;
+    box-sizing: border-box;
+    border: 1px solid rgb(100, 100, 100);
+
+}
+
+li{
+padding: 1%;
+margin: 2px;
+}

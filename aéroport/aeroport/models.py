@@ -1,18 +1,22 @@
 from django.db import models
+from datetime import date
 
 class Avion(models.Model):
     modele = models.CharField(max_length=100)
     comp = models.CharField(max_length=100)
-    date_arrivee = models.DateField(blank=True, null=True)
-    date_depart = models.DateField(blank=True, null=True)
-    nombre_passagers_depart = models.IntegerField(blank=True, null=True)
-    nombre_passagers_arrivee = models.IntegerField(blank=True, null=True)
-    personnel = []
+    date_arrivee = models.DateField(default = date.today())
+    date_depart = models.DateField(blank=True, default=None)
+    nombre_passagers_depart = models.IntegerField(default = 0)
+    nombre_passagers_arrivee = models.IntegerField(default = 0)
 
     def __str__(self):
-        chaine = f"{self.modele} de la compagnie {self.comp}, arrivant le " \
-                 f"{self.date_arrivee} avec {self.nombre_passagers_arrivee} passagers et repartant le " \
-                 f"{self.date_depart} avec {self.nombre_passagers_depart} passagers"
+        if self.date_depart==None:
+            depart = "à une date inconnue"
+        else:
+            depart = f"le {self.date_depart}"
+        chaine = f"{self.modele} de la compagnie {self.comp}, arrivé le " \
+                 f"{self.date_arrivee} avec {self.nombre_passagers_arrivee} passager(s) et repartant " \
+                 f"{depart} avec {self.nombre_passagers_depart} passager(s)"
         return chaine
 
     def dic(self):
@@ -37,7 +41,7 @@ CHOIX_METIER = (
 class Personnel(models.Model):
     nom = models.CharField(max_length=30, blank=False)
     prenom = models.CharField(max_length=30, blank=False)
-    metier = models.CharField(max_length=30, choices=CHOIX_METIER, default='1')
+    metier = models.CharField(max_length=30, choices=CHOIX_METIER, default='Hôtesse')
     avion = models.ForeignKey("avion", on_delete=models.CASCADE, default=None)
     def dic(self):
         return {"nom":self.nom, "prenom":self.prenom, "metier":self.metier, "avion":self.avion}

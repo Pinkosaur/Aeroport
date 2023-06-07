@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>update</title>
-</head>
-<body>
-<form method="post" action="/aeroport/updateperso/{{avion.id}}/">
+{% extends "main.html" %}
+{% load static %}
+{% block title %}
+Update (personnel)
+{% endblock %}
+{% block subtitle %}
+Mise à jour d'une entrée
+{% endblock %}
+{% block content %}
+<form method="post" action="/aeroport/updatetraitementperso/{{id}}/">
 {% csrf_token %}
 {{ form.as_ul }}
-<input type="submit" value="envoyer les données">
+<input type="submit" value="envoyer les données"/>
 </form>
-<a href="/aeroport/indexperso/">Retourner à la page d'accueil</a>
-</body>
-</html>
+<p><a href="/aeroport/indexperso/{{id}}/">Retour au menu du personnel</a></p>
+<p><a href="/aeroport/index/">Retour au menu principal</a></p>
+{% endblock %}

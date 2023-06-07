@@ -1,12 +1,25 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<title>Nouvelle entrée réussie</title>
-</head>
-<body>
+{% extends "main.html" %}
+{% load static %}
+{% block title %}
+Affichage
+{% endblock %}
+{% block subtitle %}
+Appareil ajouté
+{% endblock %}
+{% block content %}
 <p> vous avez ajouté l'avion suivant : appareil n°{{avion.id}} ({{avion.comp}}) </p>
-<p><a href="/aeroport/index/">Retourner à la page d'accueil</a></p>
+<ol>
+    Personnel dans cet appareil :
+    {% for l in liste %}
+        <li>
+            {{l.prenom}} {{l.nom}}, {{l.metier}}
+            <a href="/aeroport/afficheperso/{{l.id}}/"> Afficher</a> -
+            <a href="/aeroport/updateperso/{{l.id}}/"> Mettre à jour</a> -
+            <a href="/aeroport/deleteperso/{{l.id}}/"> Supprimer</a>
+        </li>
+    {% endfor %}
+</ol>
+<p><a href="/aeroport/ajoutperso/{{avion.id}}/">Ajouter du personnel</a> </p>
 <p><a href="/aeroport/ajout/">Ajouter un autre avion</a></p>
-</body>
-</html>
+<p><a href="/aeroport/index/">Retour au menu principal</a></p>
+{% endblock %}

@@ -22,10 +22,11 @@ class AvionForm(ModelForm):
 class PersonnelForm(ModelForm):
     class Meta:
         model = models.Personnel
-        fields = ('prenom', 'nom', 'metier', 'avion')
+        fields = ('prenom', 'nom', 'metier'#, 'avion'
+                  )
         labels = {
             'prenom': _("Prénom"),
             'nom': _("Nom"),
             'metier': _("Métier"),
-            'avion': _("appareil dans lequel le personnel travaille")
+#            'avion': _("appareil dans lequel le personnel travaille")
         }

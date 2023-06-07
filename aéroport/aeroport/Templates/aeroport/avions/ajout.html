@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Ajout</title>
-</head>
-<body>
+{% extends "main.html" %}
+
+{% load static %}
+{% block title %}
+Ajout
+{% endblock %}
+{% block subtitle %}
+Ajout d'un avion
+{% endblock %}
+{% block content %}
 <form method="post" action="/aeroport/traitement">
 {% csrf_token %}
 {{ form.as_ul }}
 <input type="submit" value="envoyer les données"/>
 </form>
-<a href="/aeroport/index/">Retourner à la page d'accueil</a>
-</body>
-</html>
+<a href="/aeroport/index/">Retour au menu principal</a>
+{% endblock %}

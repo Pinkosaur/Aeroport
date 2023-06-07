@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<title>Nouvelle entrée réussie</title>
-</head>
-<body>
+{% extends "main.html" %}
+{% load static %}
+{% block title %}
+Affichage
+{% endblock %}
+{% block subtitle %}
+Membre ajouté au personnel
+{% endblock %}
+{% block content %}
 <p> vous avez ajouté un membre du personnel : {{personnel.prenom}} {{personnel.nom}}, travaillant dans le {{personnel.avion.modele}} de {{personnel.avion.comp}}</p>
-<p><a href="/aeroport/indexperso/">Retourner à la page d'accueil</a></p>
-<p><a href="/aeroport/ajoutperso/">Ajouter un autre membre du personnel</a></p>
-</body>
-</html>
+<p><a href="/aeroport/ajoutperso/{{personnel.avion_id}}/">Ajouter un autre membre au personnel de cet avion</a></p>
+<p><a href="/aeroport/affiche/{{personnel.avion_id}}/">Page de l'avion</a></p>
+<p><a href="/aeroport/indexperso/{{personnel.avion_id}}/">Retour au menu du personnel</a></p>
+<p><a href="/aeroport/index/">Retour au menu principal</a></p>
+{% endblock %}

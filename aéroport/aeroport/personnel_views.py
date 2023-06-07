@@ -4,26 +4,21 @@ from . import models
 from django.http import HttpResponseRedirect
 
 
-def ajoutperso(request):
-    if request.method == "POST":
-        form = PersonnelForm(request)
-        if form.is_valid():
-            personnel = form.save()
-            return render(request, "aeroport/personnel/afficheperso.html", {"personnel": personnel})
-        else:
-            return render(request, "aeroport/personnel/ajoutperso.html", {"form": form})
-    else:
+def ajoutperso(request, id):
         form = PersonnelForm()
-        return render(request, "aeroport/personnel/ajoutperso.html", {"form": form})
+        return render(request, "aeroport/personnel/ajoutperso.html", {"form":form, "id":id})
 
-
-def traitementperso(request):
-    aform = PersonnelForm(request.POST)
-    if aform.is_valid():
-        personnel = aform.save()
+def traitementperso(request, id):
+    avion = models.Avion.objects.get(pk=id)
+    form = PersonnelForm(request.POST)
+    if form.is_valid():
+        personnel = form.save(commit = False) #commit = False
+        personnel.avion = avion
+        personnel.avion_id = id #bizarre
+        personnel.save()
         return render(request, "aeroport/personnel/afficheperso.html", {"personnel": personnel})
     else:
-        return render(request, "aeroport/personnel/ajoutperso.html", {"form": aform})
+        return render(request, "aeroport/personnel/ajoutperso.html", {"form": form})
 
 
 def afficheperso(request, id):
@@ -34,7 +29,7 @@ def afficheperso(request, id):
 def updateperso(request, id):
     personnel = models.Personnel.objects.get(pk=id)
     aform = PersonnelForm(personnel.dic())
-    return render(request, "aeroport/personnel/ajoutupdateperso.html/", {"form":aform, "id":id})
+    return render(request, "aeroport/personnel/updateperso.html/", {"form":aform, "id":id})
 
 
 def updatetraitementperso(request, id):
@@ -46,7 +41,7 @@ def updatetraitementperso(request, id):
         personnel.save()
         return HttpResponseRedirect("/aeroport/indexperso/")
     else:
-        return render(request, "aeroport/personnel/ajoutupdateperso.html", {"form": aform})
+        return render(request, "aeroport/personnel/updateperso.html", {"form": aform})
 
 
 def deleteperso(request, id):
@@ -55,6 +50,6 @@ def deleteperso(request, id):
     return HttpResponseRedirect("/aeroport/personnel/index")
 
 
-def indexperso(request):
-    liste = models.Personnel.objects.all()
-    return render(request, "aeroport/personnel/indexperso.html", {"liste": liste})
+def indexperso(request, id):
+    liste = models.Personnel.objects.filter(pk = id)
+    return render(request, "aeroport/personnel/indexperso.html", {"liste": liste, "id":id})

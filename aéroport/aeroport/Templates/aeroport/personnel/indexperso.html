@@ -1,20 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Liste du personnel de l'avion </title>
-</head>
-<body>
-<p><a href="/aeroport/index/">Revenir à la liste des avions</a></p>
-<p><a href="../ajoutperso/">Ajouter un membre du personnel</a></p>
+{% extends "main.html" %}
+{% load static %}
+{% block title %}
+index du personnel
+{% endblock %}
+{% block subtitle %}
+Liste du personnel de l'appareil
+{% endblock %}
+{% block content %}
+<p><a href="/aeroport/index/">Revenir au menu principal</a></p>
+<p><a href="/aeroport/ajoutperso/{{id}}/">Ajouter un membre du personnel</a></p>
 <ul>
     {% for l in liste %}
-    <li>{{l.prenom}} {{l.nom}}, {{l.metier}} (travaille dans le {{l.avion.modele}} de {{l.avion.comp}})
+    <li>{{l.prenom}} {{l.nom}}, {{l.metier}} (travaille dans le {{l.avion.modele}} de {{l.avion.comp}})<br>
     <a href="/aeroport/afficheperso/{{l.id}}/"> Afficher</a> -
     <a href="/aeroport/updateperso/{{l.id}}/"> Mettre à jour</a> -
     <a href="/aeroport/deleteperso/{{l.id}}/"> Supprimer</a>
     </li>
     {% endfor %}
 </ul>
-</body>
-</html>
+{% endblock %}
